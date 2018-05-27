@@ -1,4 +1,4 @@
-# cblas
+﻿# cblas
 Pascal unit interface to cblas, atlas, openblas, nvblas....
 
 
@@ -8,15 +8,15 @@ The algebraic vector and matrix operations are easy to implement, but
 the straightforward implementation is not the most performant one. 
 
 There are optimized algebra libraries that can boost the operations by 40x.
-Those libraries take advantage of handcrafted asambly code, CPU L1/L2 cache and 
-paralelism in GPUs.
+Those libraries take advantage of handcrafted assembly code, CPU L1/L2 cache and 
+parallelism in GPUs.
 
 
 This UNIT provide binding to libraries that use the CBLAS interface.
 
-Requeriments
+Requirements
 ------------
-The main requeriments during the implementation of the CBLAS Unit where:
+The main requirements during the implementation of the CBLAS Unit where:
 
    * Reuse of the  CBLAS interface.
    * Dynamic linking.
@@ -25,7 +25,7 @@ The main requeriments during the implementation of the CBLAS Unit where:
    * FreePascal / Delphi
 
 
-The CBLAS procedure that I mostly use is the `dgemm`, and I wish to compare between the diferent implementations for
+The CBLAS procedure that I mostly use is the `dgemm`, and I wish to compare between the different implementations for
 the kind of matrix that I use. (medium size 4000 x 10000). 
 
 Why Pascal
@@ -35,13 +35,13 @@ From my humble experience, the main point of friction when writing an applicatio
 The Pascal libraries excel in writing user interfaces. 
 
 If asked to define in a single word why I use Pascal for some project, that word is `Productivity´. 
-The IDE (Lazarus or Delphi), are boost the productivity in such a way that the typical CRUD aplication 
-can be done in a glimplse. 
+The IDE (Lazarus or Delphi), are boost the productivity in such a way that the typical CRUD application 
+can be done in a glimpse. 
 
-Nevertheless, one of the strenghts of the Pascal environment is the integration with other languages/libraries. 
+Nevertheless, one of the strengths of the Pascal environment is the integration with other languages/libraries. 
 
-This unit was written in 40 minutes, using `h2pas` and `vim macros`. The friction of interacting with foreing languages 
-is almost neilighible. 
+This unit was written in 40 minutes, using `h2pas` and `vim macros`. The friction of interacting with foreign languages 
+is almost negligible. 
 
 
 FreePascal/Lazarus
@@ -50,9 +50,9 @@ The cblas unit has been developed and tested with free pascal.
 
 Delphi
 -------
-This unit has not been tested with Delphi, (I haven't used delphi in the last 12 years). 
+This unit has not been tested with Delphi, (I haven't used Delphi in the last 12 years). 
 
-I'm open to adapt to Delphi is a kind soul provides a license, nevertheless is you adapt it, I will merge your changes.
+I'm open to adapt to Delphi, if a kind soul provides me a license 😊, Nevertheless, is you do the adaptation work, I will merge your changes.
 
 
 Testing
@@ -86,11 +86,11 @@ Design
 ------
 The header used to create the cblas.pas was the netlib cblas.h. 
 
-The unit follows the same approach as the sqlite unit. All functions are asigned to an address 
-using the LoadLibrary + GetProcedureAddress. All of them are explicity loaded. With this approach is 
+The unit follows the same approach as the SQLite unit. All functions are assigned to an address 
+using the LoadLibrary + GetProcedureAddress. All of them are explicitly loaded. With this approach is 
 possible to load the shared library dynamically.
 
-The usage of the external library name is avoided because it asigns the library magically. 
+The usage of the external library name is avoided because it assigns the library magically. 
 
 
 Usage
@@ -100,7 +100,7 @@ The naming of the CBLAS functions has been preserved.
 The same names used in the CBLAS headers will be used. 
 
 You shall take care of the library to use in the InitializeCBLAS. 
-But if you want to use other library or a non default name, you can use
+But if you want to use other library or a non-default name, you can use
 the InitializeCBLAS pointing out to the library. 
 
 Take care of the PATH variable that will be used to locate the libraries. 
@@ -129,10 +129,10 @@ Simple code using
 ```
 
 
-Example InitializeCBLAS for diferent libraries in Linux. The full library name is used. Take care of the suffix 
+In case your library is not libopenblas, the  InitializeCBLAS procedure shall be called with the libraries and dependencies to load.  Take care of the suffix 
 (.so, .dll, .dylib) in Linux, windows and OSX. 
 
-| Library | Initalization                                       |
+| Library | Initialization                                       |
 |---------|-----------------------------------------------------|
 |netlib cblas | InitializeCBLAS(['libblas.so'], 'libcblas.so'); |
 |openblas     | InitializeCBLAS([], 'libopenblas.so');          | 
@@ -140,18 +140,18 @@ Example InitializeCBLAS for diferent libraries in Linux. The full library name i
 |NVBLAS       | TBD                                             |
 |MKL          | TBD                                             |
 
-The netlib cblas has dependencies in the fortran libblas. The dependency array shall include all libraries the CBLAS depend on. 
-Othewise there will be unresolved symbols.
+The netlib cblas has dependencies in the Fortran libblas. The dependency array shall include all libraries the CBLAS depend on. 
+Otherwise there will be unresolved symbols.
 
 
 Matrix Memory Layout
 -------------------
 
 All BLAS functions assume that the matrix and vector data are stored contiguously in memory. 
-This implies for example that a matrix can not be represented as a vector of vectors. It needs to be represented as a block of N x M contiguous elements in memory. 
+This implies for example that a matrix cannot be represented as a vector of vectors. It needs to be represented as a block of N x M contiguous elements in memory. 
 Moreover, vectors and matrices of complex numbers must be stored such that the real and imaginary parts of a given element are contiguous in memory.
 
-For matrices in mathematical notation, the first index usally indicates the row, and the second indicates the column, e.g., given a matrix A , a1,2 is in its first row and second column. 
+For matrices in mathematical notation, the first index usually indicates the row, and the second indicates the column, e.g., given a matrix A , a1,2 is in its first row and second column. 
 
 ![equation](https://latex.codecogs.com/gif.latex?%5Cbegin%7Bbmatrix%7D%20a_1_1%20%26%20a_1_3%20%26%20a_1_3%5C%5C%20a_2_1%20%26%20a_2_3%20%26%20a_2_3%5C%5C%20a_3_1%20%26%20a_3_2%20%26%20a_3_3%20%5Cend%7Bbmatrix%7D)
 
@@ -226,10 +226,10 @@ TODO
 
 TODO
 ----
-   * test: in 32 bit environments. 
-   * test: with delphi
-   * test: nvblas in linux
-   * Publish the benchmarchs.
+   * test: in 32-bit environments. 
+   * test: with Delphi
+   * test: nvblas in Linux
+   * Publish the benchmarks.
 
 References
 -----------
@@ -245,3 +245,4 @@ CBLAS Libraries
   * [ATLAS](http://math-atlas.sourceforge.net/)
   * [Netlib BLAS](https://docs.nvidia.com/cuda/nvblas/index.html)
   * [Intel MKL](https://software.intel.com/en-us/mkl)
+
