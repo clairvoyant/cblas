@@ -1,10 +1,10 @@
-﻿CBLAS
+﻿CBLAS for Object-Pascal.
 ========
 Object-Pascal unit interface to CBLAS, ATLAS, Openblas, MKL, NVBLAS....
 
 
 Rationale
----------
+=========
 The algebraic vector and matrix operations are easy to implement, but 
 the straightforward implementation is not the most performant one. 
 
@@ -16,7 +16,7 @@ parallelism in GPUs.
 This UNIT provide binding to libraries that use the CBLAS interface.
 
 Objetives
-------------
+=========
 The main requirements during the implementation of the CBLAS Unit where:
 
    * Reuse of the  CBLAS C interface.
@@ -30,7 +30,7 @@ The CBLAS procedure that I mostly use is the `dgemm`, and I wish to compare betw
 the kind of matrix that I use. (medium size 4000 x 10000). 
 
 Why Pascal (advocacy rant)
----------------------------
+==========================
 
 From my humble experience, the main point of friction when writing an application are the graphical user interfaces.
 The ObjectPascal RAD/VCL environement excel in writing those user interfaces. It lets you build GUI software really quickly. 
@@ -46,6 +46,9 @@ This unit was written in 40 minutes, using `h2pas` and `vim macros`. The frictio
 is almost negligible. 
 
 
+Testing and dependencies
+========================
+
 FreePascal/Lazarus
 ------------------
 The cblas unit has been developed and tested with free pascal. 
@@ -58,18 +61,19 @@ Nevertheless, is you do the adaptation work, I will be more than happy to merge 
 
 This unit has not been tested with Delphi, (I haven't used Delphi in the last 12 years). 
 
-Testing
--------
+OS and Architectures
+--------------------
+
 The cblas unit has been tested in following OSs. 
 
 
 |  Library                                                      | FreeBSD  | Ubuntu   | SUSE   | Windows 10 | OSX |
 |---------------------------------------------------------------|----------|----------|--------|------------|-----|
 | [Netlib BLAS](http://www.netlib.org/blas/)                    |          |          |   X    |            |     |
-| [OpenBLAS](https://www.openblas.net/)                         |          |          |   X    |            |     |
-| [ATLAS](http://math-atlas.sourceforge.net/)                   |          |          |   X    |            |     |
+| [OpenBLAS](https://www.openblas.net/)                         |          |    X     |   X    |     X      |     |
+| [ATLAS](http://math-atlas.sourceforge.net/)                   |          |    X     |   X    |            |     |
+| [Intel MKL](https://software.intel.com/en-us/mkl)             |          |          |        |     X      |     |
 | [NVBlas](https://docs.nvidia.com/cuda/nvblas/index.html)      |          |          |        |            |     |
-| [Intel MKL](https://software.intel.com/en-us/mkl)             |          |          |        |            |     |
 | [CLBlas](https://github.com/clMathLibraries/clBLAS)           |          |          |        |            |     |
 
 
@@ -77,18 +81,40 @@ The cblas unit has been tested in following CPUs.
 
 |  Library                                                      | AMD/Intel 64 | AMD/Intel 32 | ARM 64 | ARM 32 |
 |---------------------------------------------------------------|--------------|--------------|--------|--------|
-| [Netlib BLAS](http://www.netlib.org/blas/)                    |              |              |        |        |
-| [OpenBLAS](https://www.openblas.net/)                         |              |              |        |   X    |
-| [ATLAS](http://math-atlas.sourceforge.net/)                   |              |              |        |   X    |
+| [Netlib BLAS](http://www.netlib.org/blas/)                    |     X        |              |        |        |
+| [OpenBLAS](https://www.openblas.net/)                         |     X        |              |        |   X    |
+| [ATLAS](http://math-atlas.sourceforge.net/)                   |     X        |              |        |   X    |
+| [Intel MKL](https://software.intel.com/en-us/mkl)             |     X        |              |        |        |
 | [NVBlas](https://docs.nvidia.com/cuda/nvblas/index.html)      |              |              |        |        |
-| [Intel MKL](https://software.intel.com/en-us/mkl)             |              |              |        |        |
 | [CLBlas](https://github.com/clMathLibraries/clBLAS)           |              |              |        |        |
 
+Windows Surviving to Openblas Dependencies
+------------------------------------------
 
+The CBlas libraries in windows can be retrieved in prebuild binaries. 
+But they have a some dependencies. This section describe how to use them. 
+
+[OpenBlas Pre-Built binaries](https://sourceforge.net/projects/openblas/files/v0.2.15/) can be found in sourceforge. 
+The pre-built binaries have dependencies on other dlls (libgcc_s_seh-1.dll, libgfortran-3.dll, libquadmath-0.dll). 
+Those DLL can be found in the mingw64_dll.zip also found in the OpenBlas sourceforge repository. Note that the contents
+of mingw64_dll.zip are the ones found in an instalation of mingw64.
+
+
+Windows Surviving to MKL Dependencies
+--------------------------------------
+
+The MKL exports the CBLAS interface in the mkl_rt.dll Internaly it depends on other libraries that 
+are found in the redist directories. All of the DLL shall be accesible via the Dynamic-Link Library Search Order. 
+That means either the DLL are copied to the executable path or the redist directories are appended to the PATH environement variable. 
+
+The MKL DLLs are found at. 
+
+  * compilers_and_libraries_2018.2.185\windows\redist\intel64_win\compiler
+  * compilers_and_libraries_2018.2.185\windows\redist\intel64_win\mkl
 
 
 Design
-------
+======
 The header used to create the cblas.pas was the netlib cblas.h. 
 
 The unit follows the same approach as the SQLite unit. All functions are assigned to an address 
@@ -99,7 +125,7 @@ The usage of the external library name is avoided because it assigns the library
 
 
 Usage
------
+=====
 
 The naming of the CBLAS functions has been preserved. 
 The same names used in the CBLAS headers will be used. 
@@ -191,7 +217,7 @@ Pascal (like C) uses  Row Mayor Order. Fortunatelly the CBLAS library allows the
 
 
 Install
--------
+=======
 
 the library uses the fpmake tool to compile and install.
 
@@ -214,7 +240,7 @@ $ ./fpmake build --globalunitdir=/usr/lib/fpc/default
 
 
 Verify
---------
+======
 
 There are some unit tests to verify the environment.
 
@@ -223,27 +249,18 @@ $ ./tests/tests --format=plain --all
 ```
 
 
-32 vs 64 bits
-----------------
-Verifycation has been performed in 64bits architectures. 
-There can be issues in 32 bit environment.
-
-
-Benchmarks
-----------
-
 TODO
-
-
-TODO
-----
-   * test: in 32-bit environments. 
+====
+   * test: in 32-bit environments.  Verifycation has been performed in 64bits architectures.  There can be issues in 32 bit environment.
    * test: with Delphi
    * test: nvblas in Linux
    * Publish the benchmarks.
 
 References
------------
+==========
+
+Useful links
+------------
   * Choosing the optimal BLAS and LAPACK library, Tobias Wittwer, 2008
   * [Foad Sojoodi Farimani, Curated list of cblas resources](https://github.com/Foadsf/Cmathtuts)
   * [Column vs Row major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order)
@@ -258,3 +275,6 @@ CBLAS Libraries
   * [Intel MKL](https://software.intel.com/en-us/mkl)
   * [CLBlas](https://github.com/clMathLibraries/clBLAS)
 
+CBLAS Instalation instructions
+------------------------------
+  * [OpenBlas Pre-build instructions for windows](https://github.com/arrayfire/arrayfire/wiki/CBLAS-for-Windows)
