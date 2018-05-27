@@ -153,7 +153,8 @@ Moreover, vectors and matrices of complex numbers must be stored such that the r
 
 For matrices in mathematical notation, the first index usally indicates the row, and the second indicates the column, e.g., given a matrix A , a1,2 is in its first row and second column. 
 
-![equation](https://www.codecogs.com/eqnedit.php?latex=\begin{bmatrix}&space;a_1_1&space;&&space;a_1_2&space;&&space;a_1_3\\&space;a_2_1&space;&&space;a_2_2&space;&&space;a_2_3\\&space;a_3_1&space;&&space;a_3_1&space;&&space;a_3_1&space;\end{bmatrix}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\begin{bmatrix}&space;a_1_1&space;&&space;a_1_2&space;&&space;a_1_3\\&space;a_2_1&space;&&space;a_2_2&space;&&space;a_2_3\\&space;a_3_1&space;&&space;a_3_1&space;&&space;a_3_1&space;\end{bmatrix}" title="\begin{bmatrix} a_1_1 & a_1_2 & a_1_3\\ a_2_1 & a_2_2 & a_2_3\\ a_3_1 & a_3_1 & a_3_1 \end{bmatrix})
+![equation](https://latex.codecogs.com/gif.latex?%5Cbegin%7Bbmatrix%7D%20a_1_1%20%26%20a_1_3%20%26%20a_1_3%5C%5C%20a_2_1%20%26%20a_2_3%20%26%20a_2_3%5C%5C%20a_3_1%20%26%20a_3_2%20%26%20a_3_3%20%5Cend%7Bbmatrix%7D)
+
 ``
 | a_1_1 a_1_2 a_1_3 .... |
 | a_2_1 a_2_2 a_2_3 .... |
@@ -167,6 +168,7 @@ There are two ways of placing previous matrix in memory, either put the rows one
 Those two variants: row-major, and column-major. For CBLAS both are supported equally well,
 
 Row-major order (C, Pascal).
+
 |Address | Access  | Value |
 |--------|---------|-------|
 |0       | A[0][0] | a_1_1 |
@@ -177,6 +179,7 @@ Row-major order (C, Pascal).
 |5       | A[1][2] | a_2_3 |
 
 Column-major order (Fortran).
+
 |Address | Access  |Value |
 |--------|---------|------|
 |1       | A(0,0)  |a_1_1 |
