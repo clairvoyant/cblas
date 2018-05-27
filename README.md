@@ -199,7 +199,7 @@ If your FreePascal instalation is not in the standard place, you need to point t
 
 ```sh
 $ ./fpmake build --globalunitdir=/usr/lib64/fpc/3.0.4/
-```sh
+```
 
 
 Verify
