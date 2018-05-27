@@ -152,6 +152,8 @@ This implies for example that a matrix can not be represented as a vector of vec
 Moreover, vectors and matrices of complex numbers must be stored such that the real and imaginary parts of a given element are contiguous in memory.
 
 For matrices in mathematical notation, the first index usally indicates the row, and the second indicates the column, e.g., given a matrix A , a1,2 is in its first row and second column. 
+
+![equation](https://www.codecogs.com/eqnedit.php?latex=\begin{bmatrix}&space;a_1_1&space;&&space;a_1_2&space;&&space;a_1_3\\&space;a_2_1&space;&&space;a_2_2&space;&&space;a_2_3\\&space;a_3_1&space;&&space;a_3_1&space;&&space;a_3_1&space;\end{bmatrix}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\begin{bmatrix}&space;a_1_1&space;&&space;a_1_2&space;&&space;a_1_3\\&space;a_2_1&space;&&space;a_2_2&space;&&space;a_2_3\\&space;a_3_1&space;&&space;a_3_1&space;&&space;a_3_1&space;\end{bmatrix}" title="\begin{bmatrix} a_1_1 & a_1_2 & a_1_3\\ a_2_1 & a_2_2 & a_2_3\\ a_3_1 & a_3_1 & a_3_1 \end{bmatrix})
 ``
 | a_1_1 a_1_2 a_1_3 .... |
 | a_2_1 a_2_2 a_2_3 .... |
