@@ -14,11 +14,11 @@ parallelism in GPUs.
 
 This UNIT provide binding to libraries that use the CBLAS interface.
 
-Requirements
+Objetives
 ------------
 The main requirements during the implementation of the CBLAS Unit where:
 
-   * Reuse of the  CBLAS interface.
+   * Reuse of the  CBLAS C interface.
    * Dynamic linking.
    * Runtime selection of the library, the unit shall be able to select the library during execution.
    * Hide the Windows/Linux/OSX details. 
@@ -28,11 +28,12 @@ The main requirements during the implementation of the CBLAS Unit where:
 The CBLAS procedure that I mostly use is the `dgemm`, and I wish to compare between the different implementations for
 the kind of matrix that I use. (medium size 4000 x 10000). 
 
-Why Pascal
-----------
+Why Pascal (advocacy rant)
+---------------------------
 
 From my humble experience, the main point of friction when writing an application are the graphical user interfaces.
-The Pascal libraries excel in writing user interfaces. 
+The ObjectPascal RAD environement excel in writing those user interfaces. It lets you build GUI software really quickly. 
+Productivity in Lazarus/Delphi for someone used to it surpases any "modern" GUI development platform. 
 
 If asked to define in a single word why I use Pascal for some project, that word is `Productivity´. 
 The IDE (Lazarus or Delphi), are boost the productivity in such a way that the typical CRUD application 
@@ -50,10 +51,11 @@ The cblas unit has been developed and tested with free pascal.
 
 Delphi
 -------
+
+I'm open to adapt to Delphi, if a kind soul provides me a license :). 
+Nevertheless, is you do the adaptation work, I will be more than happy to merge your changes.
+
 This unit has not been tested with Delphi, (I haven't used Delphi in the last 12 years). 
-
-I'm open to adapt to Delphi, if a kind soul provides me a license 😊, Nevertheless, is you do the adaptation work, I will merge your changes.
-
 
 Testing
 -------
