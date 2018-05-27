@@ -108,7 +108,7 @@ The same rules as LoadLibrary will apply.
 
 
 Simple code using 
-``Pascal
+```Pascal
      InitializeCBLAS;
 
     ...
@@ -126,7 +126,7 @@ Simple code using
      ....
 
      ReleaseCBLAS;
-``
+```
 
 
 Example InitializeCBLAS for diferent libraries in Linux. The full library name is used. Take care of the suffix 
@@ -155,14 +155,6 @@ For matrices in mathematical notation, the first index usally indicates the row,
 
 ![equation](https://latex.codecogs.com/gif.latex?%5Cbegin%7Bbmatrix%7D%20a_1_1%20%26%20a_1_3%20%26%20a_1_3%5C%5C%20a_2_1%20%26%20a_2_3%20%26%20a_2_3%5C%5C%20a_3_1%20%26%20a_3_2%20%26%20a_3_3%20%5Cend%7Bbmatrix%7D)
 
-``
-| a_1_1 a_1_2 a_1_3 .... |
-| a_2_1 a_2_2 a_2_3 .... |
-| a_3_1 a_3_2 a_3_3 .... |
-| a_4_1 a_4_2 a_4_3 .... |
-| ....                   |
-
-´´
 
 There are two ways of placing previous matrix in memory, either put the rows one after other or place the columns. 
 Those two variants: row-major, and column-major. For CBLAS both are supported equally well,
@@ -195,19 +187,19 @@ Pascal (like C) uses  Row Mayor Order. Fortunatelly the CBLAS library allows the
 Install
 -------
 
-``sh
+```sh
 $ git clone https://github.com/clairvoyant/cblas
 $ cd cblas
 $ fpc fpmake
 $ fpmake build
 $ fpmake install
-`` 
+``` 
 
 If your FreePascal instalation is not in the standard place, you need to point to the global unit dir. 
 
-``sh
+```sh
 $ ./fpmake build --globalunitdir=/usr/lib64/fpc/3.0.4/
-``sh
+```sh
 
 
 Verify
@@ -215,9 +207,9 @@ Verify
 
 There are some unit tests to verify the environment.
 
-``sh
+```sh
 $ ./tests/tests --format=plain --all
-``
+```
 
 
 32 vs 64 bits
