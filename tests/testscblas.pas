@@ -17,6 +17,7 @@ type
     procedure TestBasicProcedureLoad;
     procedure TestOpenBlas;
     procedure TestNetlibBlas;
+    procedure TestAtlas;
   end;
 
 implementation
@@ -74,7 +75,8 @@ begin
      PrintMatrix('C', C,m,n);
 
 
-  cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+     AssertNotNull('function not found:', cblas_dgemm);
+     cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
               m,n,k, { m, n, k }
               1,     { alpha   }
                 A, k,
@@ -86,6 +88,7 @@ begin
      PrintMatrix('Result', C, m, n);
      ReleaseCBLAS;
 end;
+
 
 procedure TTestBlas.TestNetlibBlas;
 var
@@ -102,13 +105,14 @@ begin
      k := 2;
      n := 3;
      
-     InitializeCBLAS(['libblas.so'], 'libcblas.so');
+     InitializeCBLAS(['libblas.so'], 'libcblas.so.3');
      PrintMatrix('A', A,m,k);
      PrintMatrix('B', B,k,n);
      PrintMatrix('C', C,m,n);
 
 
-  cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+     AssertNotNull('cblas_dgemm not found:', cblas_dgemm);
+     cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
               m,n,k, { m, n, k }
               1,     { alpha   }
                 A, k,
@@ -120,6 +124,44 @@ begin
      PrintMatrix('Result', C, m, n);
      ReleaseCBLAS;
 end;
+
+
+procedure TTestBlas.TestAtlas;
+var
+  m,n,k: integer;
+
+  { 3x2 matrix (m * k)  }
+  A: array[0..5] of double = (  1.0, 2.0 , 3.0, 4.0 , 5.0, 6.0);
+  { 2x3 matrix (k * n)  }
+  B: array[0..5] of double = ( 1.0,  2.0, 3.0, 4.0,  5.0, 6.0);
+  { 3x3 matrix (m * n)  }
+  C: array[0..8] of double = ( 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9  );
+begin
+     m := 3;
+     k := 2;
+     n := 3;
+     
+     InitializeCBLAS([], 'libcblas.so.3');
+     PrintMatrix('A', A,m,k);
+     PrintMatrix('B', B,k,n);
+     PrintMatrix('C', C,m,n);
+
+
+     AssertNotNull('cblas_dgemm not found:', cblas_dgemm);
+     cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+              m,n,k, { m, n, k }
+              1,     { alpha   }
+                A, k,
+                B, n,
+              1,
+                C,n  
+             );
+
+     PrintMatrix('Result', C, m, n);
+     ReleaseCBLAS;
+end;
+
+
 
 
 

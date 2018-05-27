@@ -65,22 +65,24 @@ The cblas unit has been tested in following OSs.
 
 |  Library                                                      | FreeBSD  | Ubuntu   | SUSE   | Windows 10 | OSX |
 |---------------------------------------------------------------|----------|----------|--------|------------|-----|
-| [Netlib BLAS](http://www.netlib.org/blas/)                    |    X     |   x      |  x     |            |  x  |
-| [OpenBLAS](https://www.openblas.net/)                         |    X     |   x      |  x     |            |     |
-| [ATLAS](http://math-atlas.sourceforge.net/)                   |    X     |   x      |  x     |            |     |
+| [Netlib BLAS](http://www.netlib.org/blas/)                    |          |          |        |            |     |
+| [OpenBLAS](https://www.openblas.net/)                         |          |          |        |            |     |
+| [ATLAS](http://math-atlas.sourceforge.net/)                   |          |          |        |            |     |
 | [Netlib BLAS](https://docs.nvidia.com/cuda/nvblas/index.html) |          |          |        |            |     |
 | [Intel MKL](https://software.intel.com/en-us/mkl)             |          |          |        |            |     |
+| [CLBlas]()             |          |          |        |            |     |
 
 
 The cblas unit has been tested in following CPUs. 
 
 |  Library                                                      | AMD/Intel 64 | AMD/Intel 32 | ARM 64 | ARM 32 |
 |---------------------------------------------------------------|--------------|--------------|--------|--------|
-| [Netlib BLAS](http://www.netlib.org/blas/)                    |    X         |              |  x     |        |
-| [OpenBLAS](https://www.openblas.net/)                         |    X         |              |        |        |
-| [ATLAS](http://math-atlas.sourceforge.net/)                   |    X         |              |        |        |
-| [Netlib BLAS](https://docs.nvidia.com/cuda/nvblas/index.html) |    X         |              |        |        |
-| [Intel MKL](https://software.intel.com/en-us/mkl)             |    X         |              |        |        |
+| [Netlib BLAS](http://www.netlib.org/blas/)                    |              |              |        |        |
+| [OpenBLAS](https://www.openblas.net/)                         |              |              |        |        |
+| [ATLAS](http://math-atlas.sourceforge.net/)                   |              |              |        |        |
+| [Netlib BLAS](https://docs.nvidia.com/cuda/nvblas/index.html) |              |              |        |        |
+| [Intel MKL](https://software.intel.com/en-us/mkl)             |              |              |        |        |
+| [CLBlas](https://github.com/clMathLibraries/clBLAS)           |              |              |        |        |
 
 
 
@@ -142,6 +144,7 @@ In case your library is not libopenblas, the  InitializeCBLAS procedure shall be
 |ATLAS        | InitializeCBLAS([], 'libopenblas.so');          |
 |NVBLAS       | TBD                                             |
 |MKL          | TBD                                             |
+|CLBlas       | TBD                                             |
 
 The netlib cblas has dependencies in the Fortran libblas. The dependency array shall include all libraries the CBLAS depend on. 
 Otherwise there will be unresolved symbols.
@@ -190,6 +193,8 @@ Pascal (like C) uses  Row Mayor Order. Fortunatelly the CBLAS library allows the
 Install
 -------
 
+the library uses the fpmake tool to compile and install.
+
 ```sh
 $ git clone https://github.com/clairvoyant/cblas
 $ cd cblas
@@ -200,8 +205,11 @@ $ fpmake install
 
 If your FreePascal instalation is not in the standard place, you need to point to the global unit dir. 
 
+The syntax is somehow similar to the one below.
+
 ```sh
 $ ./fpmake build --globalunitdir=/usr/lib64/fpc/3.0.4/
+$ ./fpmake build --globalunitdir=/usr/lib/fpc/default
 ```
 
 
@@ -248,4 +256,5 @@ CBLAS Libraries
   * [ATLAS](http://math-atlas.sourceforge.net/)
   * [Netlib BLAS](https://docs.nvidia.com/cuda/nvblas/index.html)
   * [Intel MKL](https://software.intel.com/en-us/mkl)
+  * CLBlas
 
