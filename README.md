@@ -252,9 +252,10 @@ $ ./tests/tests --format=plain --all
 
 TODO
 ====
-   * test: in 32-bit environments.  Verifycation has been performed in 64bits architectures.  There can be issues in 32 bit environment.
-   * test: with Delphi
-   * test: nvblas in Linux
+   * Test: in 32-bit environments. Verification has been performed in 64bits architectures.  There can be issues in 32 bit environment.
+   * Test: with Delphi
+   * Test: nvblas in Linux/Windows
+   * Test: clblas in Linux/Windows
    * Publish the benchmarks.
 
 References
