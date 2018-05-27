@@ -172,16 +172,16 @@ Row-major order (C, Pascal).
 |4       | A[1][1] | a_2_2 |
 |5       | A[1][2] | a_2_3 |
 
-Column-major order (Fortran).
+Column-major order.
 
 |Address | Access  |Value |
 |--------|---------|------|
-|1       | A(0,0)  |a_1_1 |
-|2       | A(1,0)  |a_2_1 |
-|3       | A(0,1)  |a_1_2 |
-|4       | A(1,1)  |a_2_2 |
-|5       | A(0,2)  |a_1_3 |
-|6       | A(2,2)  |a_2_3 |
+|1       | A[0][0]  |a_1_1 |
+|2       | A[1][0]  |a_2_1 |
+|3       | A[0][1]  |a_1_2 |
+|4       | A[1][1]  |a_2_2 |
+|5       | A[0][2]  |a_1_3 |
+|6       | A[2][2]  |a_2_3 |
 
 Pascal (like C) uses  Row Mayor Order. Fortunatelly the CBLAS library allows the selection of the matrix order. 
 
