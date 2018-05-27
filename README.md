@@ -65,12 +65,12 @@ The cblas unit has been tested in following OSs.
 
 |  Library                                                      | FreeBSD  | Ubuntu   | SUSE   | Windows 10 | OSX |
 |---------------------------------------------------------------|----------|----------|--------|------------|-----|
-| [Netlib BLAS](http://www.netlib.org/blas/)                    |          |          |        |            |     |
-| [OpenBLAS](https://www.openblas.net/)                         |          |          |        |            |     |
-| [ATLAS](http://math-atlas.sourceforge.net/)                   |          |          |        |            |     |
-| [Netlib BLAS](https://docs.nvidia.com/cuda/nvblas/index.html) |          |          |        |            |     |
+| [Netlib BLAS](http://www.netlib.org/blas/)                    |          |          |   X    |            |     |
+| [OpenBLAS](https://www.openblas.net/)                         |          |          |   X    |            |     |
+| [ATLAS](http://math-atlas.sourceforge.net/)                   |          |          |   X    |            |     |
+| [NVBlas](https://docs.nvidia.com/cuda/nvblas/index.html)      |          |          |        |            |     |
 | [Intel MKL](https://software.intel.com/en-us/mkl)             |          |          |        |            |     |
-| [CLBlas]()             |          |          |        |            |     |
+| [CLBlas](https://github.com/clMathLibraries/clBLAS)           |          |          |        |            |     |
 
 
 The cblas unit has been tested in following CPUs. 
@@ -78,9 +78,9 @@ The cblas unit has been tested in following CPUs.
 |  Library                                                      | AMD/Intel 64 | AMD/Intel 32 | ARM 64 | ARM 32 |
 |---------------------------------------------------------------|--------------|--------------|--------|--------|
 | [Netlib BLAS](http://www.netlib.org/blas/)                    |              |              |        |        |
-| [OpenBLAS](https://www.openblas.net/)                         |              |              |        |        |
-| [ATLAS](http://math-atlas.sourceforge.net/)                   |              |              |        |        |
-| [Netlib BLAS](https://docs.nvidia.com/cuda/nvblas/index.html) |              |              |        |        |
+| [OpenBLAS](https://www.openblas.net/)                         |              |              |        |   X    |
+| [ATLAS](http://math-atlas.sourceforge.net/)                   |              |              |        |   X    |
+| [NVBlas](https://docs.nvidia.com/cuda/nvblas/index.html)      |              |              |        |        |
 | [Intel MKL](https://software.intel.com/en-us/mkl)             |              |              |        |        |
 | [CLBlas](https://github.com/clMathLibraries/clBLAS)           |              |              |        |        |
 
@@ -137,11 +137,11 @@ Simple code using
 In case your library is not libopenblas, the  InitializeCBLAS procedure shall be called with the libraries and dependencies to load.  Take care of the suffix 
 (.so, .dll, .dylib) in Linux, windows and OSX. 
 
-| Library | Initialization                                       |
+| Library | Initialization                                      |
 |---------|-----------------------------------------------------|
 |netlib cblas | InitializeCBLAS(['libblas.so'], 'libcblas.so'); |
 |openblas     | InitializeCBLAS([], 'libopenblas.so');          | 
-|ATLAS        | InitializeCBLAS([], 'libopenblas.so');          |
+|ATLAS        | InitializeCBLAS([], 'libcblas.so.3');           |
 |NVBLAS       | TBD                                             |
 |MKL          | TBD                                             |
 |CLBlas       | TBD                                             |
@@ -256,5 +256,5 @@ CBLAS Libraries
   * [ATLAS](http://math-atlas.sourceforge.net/)
   * [Netlib BLAS](https://docs.nvidia.com/cuda/nvblas/index.html)
   * [Intel MKL](https://software.intel.com/en-us/mkl)
-  * CLBlas
+  * [CLBlas](https://github.com/clMathLibraries/clBLAS)
 
