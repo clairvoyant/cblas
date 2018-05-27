@@ -555,7 +555,9 @@ var
 implementation
 
 
+{$IFDEF UNIX}                                                                
 uses dl;
+{$ENDIF}
 
 
 var
@@ -729,10 +731,13 @@ begin
           Dep := Dependencies[i];
           { TODO: adapt this part to OSX and Windows }
           { TODO:  this is a memory leak. Put in a list and release on exit....}
-
+{$IFDEF UNIX}                                                                
           lib := TLibHandle(dlopen(PAnsiChar(Dep), RTLD_LAZY or RTLD_GLOBAL));
+{$ELSE}
+          lib := LoadLibrary(Dep);
+{$ENDIF}
           if lib = NilHandle then
-	  begin
+          begin
             result := -1;
           end;
       end;

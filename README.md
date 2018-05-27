@@ -1,5 +1,6 @@
-﻿# cblas
-Pascal unit interface to cblas, atlas, openblas, nvblas....
+﻿CBLAS
+========
+Object-Pascal unit interface to CBLAS, ATLAS, Openblas, MKL, NVBLAS....
 
 
 Rationale
@@ -32,7 +33,7 @@ Why Pascal (advocacy rant)
 ---------------------------
 
 From my humble experience, the main point of friction when writing an application are the graphical user interfaces.
-The ObjectPascal RAD environement excel in writing those user interfaces. It lets you build GUI software really quickly. 
+The ObjectPascal RAD/VCL environement excel in writing those user interfaces. It lets you build GUI software really quickly. 
 Productivity in Lazarus/Delphi for someone used to it surpases any "modern" GUI development platform. 
 
 If asked to define in a single word why I use Pascal for some project, that word is `Productivity´. 
@@ -68,7 +69,7 @@ The cblas unit has been tested in following OSs.
 | [OpenBLAS](https://www.openblas.net/)                         |    X     |   x      |  x     |            |     |
 | [ATLAS](http://math-atlas.sourceforge.net/)                   |    X     |   x      |  x     |            |     |
 | [Netlib BLAS](https://docs.nvidia.com/cuda/nvblas/index.html) |          |          |        |            |     |
-| [Intel MKL](https://software.intel.com/en-us/mkl)             |    X     |          |        |            |     |
+| [Intel MKL](https://software.intel.com/en-us/mkl)             |          |          |        |            |     |
 
 
 The cblas unit has been tested in following CPUs. 
