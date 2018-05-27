@@ -105,7 +105,7 @@ Windows Surviving to MKL Dependencies
 
 The MKL exports the CBLAS interface in the mkl_rt.dll Internaly it depends on other libraries that 
 are found in the redist directories. All of the DLL shall be accesible via the Dynamic-Link Library Search Order. 
-That means either the DLL are copied to the executable path or the redist directories are appended to the PATH environement variable. 
+That means either the DLL are copied to the executable path or the redist directories are append to the PATH environment variable. 
 
 The MKL DLLs are found at. 
 
@@ -138,7 +138,8 @@ Take care of the PATH variable that will be used to locate the libraries.
 The same rules as LoadLibrary will apply. 
 
 
-Simple code using 
+Sample code using default initalization.
+
 ```Pascal
      InitializeCBLAS;
 
@@ -168,8 +169,8 @@ In case your library is not libopenblas, the  InitializeCBLAS procedure shall be
 |netlib cblas | InitializeCBLAS(['libblas.so'], 'libcblas.so'); |
 |openblas     | InitializeCBLAS([], 'libopenblas.so');          | 
 |ATLAS        | InitializeCBLAS([], 'libcblas.so.3');           |
+|ATLAS        | InitializeCBLAS([], 'mkl_rt.dll');           |
 |NVBLAS       | TBD                                             |
-|MKL          | TBD                                             |
 |CLBlas       | TBD                                             |
 
 The netlib cblas has dependencies in the Fortran libblas. The dependency array shall include all libraries the CBLAS depend on. 
