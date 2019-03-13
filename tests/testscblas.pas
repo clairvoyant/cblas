@@ -71,9 +71,9 @@ begin
      n := 3;
      
      InitializeCBLAS;
-     PrintMatrix('A', A,m,k);
-     PrintMatrix('B', B,k,n);
-     PrintMatrix('C', C,m,n);
+     { PrintMatrix('A', A,m,k); }
+     { PrintMatrix('B', B,k,n); }
+     { PrintMatrix('C', C,m,n); }
 
 
      AssertNotNull('function not found:', cblas_dgemm);
@@ -86,7 +86,7 @@ begin
                 C,n  
              );
 
-     PrintMatrix('Result', C, m, n);
+             { PrintMatrix('Result', C, m, n); }
      ReleaseCBLAS;
 end;
 
@@ -107,9 +107,9 @@ begin
      n := 3;
      
      InitializeCBLAS(['libblas.so'], 'libcblas.so.3');
-     PrintMatrix('A', A,m,k);
-     PrintMatrix('B', B,k,n);
-     PrintMatrix('C', C,m,n);
+     { PrintMatrix('A', A,m,k); }
+     { PrintMatrix('B', B,k,n); }
+     { PrintMatrix('C', C,m,n); }
 
 
      AssertNotNull('cblas_dgemm not found:', cblas_dgemm);
@@ -122,7 +122,7 @@ begin
                 C,n  
              );
 
-     PrintMatrix('Result', C, m, n);
+             { PrintMatrix('Result', C, m, n); }
      ReleaseCBLAS;
 end;
 
@@ -143,9 +143,9 @@ begin
      n := 3;
      
      InitializeCBLAS([], 'libcblas.so.3');
-     PrintMatrix('A', A,m,k);
-     PrintMatrix('B', B,k,n);
-     PrintMatrix('C', C,m,n);
+     { PrintMatrix('A', A,m,k); }
+     { PrintMatrix('B', B,k,n); }
+     { PrintMatrix('C', C,m,n); }
 
 
      AssertNotNull('cblas_dgemm not found:', cblas_dgemm);
@@ -158,7 +158,7 @@ begin
                 C,n  
              );
 
-     PrintMatrix('Result', C, m, n);
+             { PrintMatrix('Result', C, m, n); }
      ReleaseCBLAS;
 end;
 
@@ -179,9 +179,9 @@ begin
      n := 3;
      
      InitializeCBLAS([], 'mkl_rt.dll');
-     PrintMatrix('A', A,m,k);
-     PrintMatrix('B', B,k,n);
-     PrintMatrix('C', C,m,n);
+     { PrintMatrix('A', A,m,k); }
+     { PrintMatrix('B', B,k,n); }
+     { PrintMatrix('C', C,m,n); }
 
 
      AssertNotNull('cblas_dgemm not found:', cblas_dgemm);
@@ -194,7 +194,7 @@ begin
                 C,n  
              );
 
-     PrintMatrix('Result', C, m, n);
+             { PrintMatrix('Result', C, m, n); }
      ReleaseCBLAS;
 end;
 

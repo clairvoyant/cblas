@@ -226,17 +226,16 @@ the library uses the fpmake tool to compile and install.
 $ git clone https://github.com/clairvoyant/cblas
 $ cd cblas
 $ fpc fpmake
-$ fpmake build
-$ fpmake install
+$ ./fpmake build
+$ ./fpmake install
 ``` 
 
 If your FreePascal instalation is not in the standard place, you need to point to the global unit dir. 
 
-The syntax is somehow similar to the one below.
+The syntax is somehow similar to the one below, change the globalunitdir path to your instalation path.
 
 ```sh
 $ ./fpmake build --globalunitdir=/usr/lib64/fpc/3.0.4/
-$ ./fpmake build --globalunitdir=/usr/lib/fpc/default
 ```
 
 
